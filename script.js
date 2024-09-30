@@ -1,20 +1,22 @@
-const display = document.getElementById("display");
-const buttons = Array.from(document.querySelectorAll("button"));
+function clearDisplay() {
+  document.getElementById("display").value = "";
+}
 
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const value = button.textContent;
+function deleteLast() {
+  let display = document.getElementById("display");
+  display.value = display.value.slice(0, -1);
+}
 
-    if (value === "AC") {
-      display.value = "";
-    } else if (value === "=") {
-      try {
-        display.value = eval(display.value);
-      } catch (e) {
-        display.value = "Error";
-      }
-    } else {
-      display.value += value;
-    }
-  });
-});
+function appendCharacter(character) {
+  let display = document.getElementById("display");
+  display.value += character;
+}
+
+function calculateResult() {
+  let display = document.getElementById("display");
+  try {
+    display.value = eval(display.value);
+  } catch {
+    display.value = "Error";
+  }
+}
